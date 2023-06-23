@@ -2,4 +2,9 @@ GET https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces
 ###
 
 POST https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces
+Content-Type: application/application/json
+
+{
+    "location" : "Paris"
+}
 ###
