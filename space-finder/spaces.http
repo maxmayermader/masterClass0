@@ -8,3 +8,14 @@ Content-Type: application/application/json
     "location" : "Paris"
 }
 ###
+
+GET https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces?id=343345
+###
+
+PUT https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces?id=343345
+Content-Type: application/application/json
+
+{
+    "location" : "Paris2"
+}
+###
