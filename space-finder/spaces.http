@@ -12,6 +12,9 @@ Content-Type: application/application/json
 GET https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces?id=343345
 ###
 
+DELETE  https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces?id=343345
+###
+
 PUT https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces?id=343345
 Content-Type: application/application/json
 
