@@ -5,20 +5,21 @@ POST https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces
 Content-Type: application/application/json
 
 {
-    "location" : "Paris"
-}
+    "location": "Dublin",
+    "name": "Best location"
+ }
 ###
 
-GET https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces?id=343345
+GET https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces?id=c5e4a3be-6b98-417c-9a13-4c800c44d1f8
 ###
 
-DELETE  https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces?id=343345
+DELETE  https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces?id=c5e4a3be-6b98-417c-9a13-4c800c44d1f8
 ###
 
-PUT https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces?id=343345
+PUT https://o3uzl9x8tg.execute-api.eu-central-1.amazonaws.com/prod/spaces?id=c5e4a3be-6b98-417c-9a13-4c800c44d1f8
 Content-Type: application/application/json
 
 {
-    "location" : "Paris2"
+    "name": "Best location 5"
 }
 ###
