@@ -1,13 +1,7 @@
 import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib'
-
-import { UserPool, UserPoolClient } from 'aws-cdk-lib/aws-cognito';
-
+import { CfnIdentityPool, CfnUserPoolGroup, UserPool, UserPoolClient } from 'aws-cdk-lib/aws-cognito';
+import { CfnUserGroup } from 'aws-cdk-lib/aws-elasticache';
 import { Construct } from 'constructs';
-
-
-
-
-
 
 
 export class AuthStack extends Stack {
@@ -16,6 +10,8 @@ export class AuthStack extends Stack {
     public userPool: UserPool;
 
     private userPoolClient: UserPoolClient;
+    private identityPool: CfnIdentityPool;
+    
 
 
 
@@ -25,11 +21,10 @@ export class AuthStack extends Stack {
         super(scope, id, props);
 
 
-
-
         this.createUserPool();
-
         this.createUserPoolClient();
+        this.createAdminsGroup();
+        this.createIdentityPool();
 
     }
 
@@ -59,6 +54,7 @@ export class AuthStack extends Stack {
 
             value: this.userPool.userPoolId
 
+            
         })
 
     }
@@ -79,6 +75,8 @@ export class AuthStack extends Stack {
 
             }
 
+            
+
         });
 
         new CfnOutput(this, 'SpaceUserPoolClientId', {
@@ -86,7 +84,26 @@ export class AuthStack extends Stack {
             value: this.userPoolClient.userPoolClientId
 
         })
-
     }
+        private createAdminsGroup(){
+            new CfnUserPoolGroup(this, 'SpaceAdmins', {
+                userPoolId: this.userPool.userPoolId,
+                groupName: 'admins'
+            })
+            
+        }
 
+        private createIdentityPool(){
+            this.identityPool = new CfnIdentityPool(this, 'SpaceIdentityPool', {
+                allowUnauthenticatedIdentities: true,
+                cognitoIdentityProviders: [{
+                    clientId: this.userPoolClient.userPoolClientId,
+                    providerName: this.userPool.userPoolProviderName
+                }]
+            })
+            new CfnOutput(this, 'SpaceIdentityPoolId', {
+                value: this.identityPool.ref
+            })
+        }
 }
+
